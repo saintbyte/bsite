@@ -1,0 +1,89 @@
+/* CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: sans-serif;
+}
+body {
+            min-height: 100vh;
+}
+/* Header Font Sizes */
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1em;
+}
+
+h5 {
+    font-size: 0.9em;
+}
+
+h6 {
+    font-size: 0.8em;
+}
+/* Header Font Sizes and Background */
+header {
+    background-color: #f0f0f0; /* light gray background */
+    height: 20px; /* add some padding to the header */
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+header h2 {
+    font-size: 1.5em;
+}
+
+/* Footer Background and Padding */
+footer {
+    background-color: #f5f5f5; /* slightly lighter gray background */
+    padding: 30px; /* add more padding to the footer */
+}
+/* Main Element Width Limit for Desktop */
+main {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.verse {
+    list-style: none;
+}
+.verse li {
+    padding: 5px;
+}
+.verse li b {
+    font-weight: bolder;
+}
+@media screen and (min-width: 768px) {
+    main {
+        width: 1024px; /* or any other value you prefer */
+        margin: auto;
+
+    }
+}

@@ -3,7 +3,7 @@ from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 from pages.models import Page
 
 
-class PageMPTTModelAdmin(DraggableMPTTAdmin):
+class PageMPTTModelAdmin(MPTTModelAdmin):
     mptt_level_indent = 20
 
 

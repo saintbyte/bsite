@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from pages.models import HomePage, Verse
+from pages.models import Page, Verse
 import json
 import pathlib
 from pprint import pprint
@@ -21,37 +21,32 @@ class Command(BaseCommand):
         bible_data = json.load(fh)
         # print(len(bible_data))
         # pprint(bible_data[1], depth=7)
-        parent_id = 73
-        parent_page = HomePage.objects.get(id=parent_id)
+        parent_id = 1
+        parent_page = Page.objects.get(id=parent_id)
         cnt = 1
-
+        Page.objects.filter(pk__gt=1).delete()
+        Verse.objects.all().delete()
         for item in bible_data:
             print(cnt)
             print(item["name"])
             print(item["abbrev"])
             print(len(item["chapters"]))
-            page = HomePage(
-                title=item["name"],
+            page = Page(
+                name=item["name"],
+                parent=parent_page,
                 slug=item["abbrev"],
-                seo_title=item["name"],
-                live=True,
-                url_path=parent_page.url_path + item["abbrev"] + "/",
-                path=parent_page.path + str(cnt).zfill(4),
-                depth=4,
+                url=parent_page.url + item["abbrev"] + "/",
             )
             page.save()
 
             chapter_cnt = 1
             for chapter in item["chapters"]:
                 print(f"chapter: {chapter_cnt}")
-                page2 = HomePage(
-                    title=str(chapter_cnt),
+                page2 = Page(
+                    name=str(chapter_cnt),
                     slug=str(chapter_cnt),
-                    seo_title=str(chapter_cnt),
-                    live=True,
-                    url_path=page.url_path + str(chapter_cnt) + "/",
-                    path=page.path + str(chapter_cnt).zfill(4),
-                    depth=5,
+                    parent=page,
+                    url=page.url + str(chapter_cnt) + "/",
                 )
                 page2.save()
                 verse_cnt = 1

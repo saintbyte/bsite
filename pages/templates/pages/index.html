@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% load comments %}
+{% block content %}
+<main>
+    <h1>{{ page.name }}</h1>
+    {% if subpages %}
+    <ul>
+        {% for page in subpages %}
+        <li><a href="{{ page.url }}">{{ page.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if page.verse_set %}
+    <ul class="verse">
+        {% for verse in page.verse_set.all %}
+        <li><b>{{ page.name }}:{{ verse.verse_number }}</b> {{ verse.text }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if comment_count %}
+    <hr/>
+    <div class="comments">
+        {% render_comment_list for object %}
+    </div>
+    <div class="card card-block mb-5">
+        <div class="card-body">
+            <h4 class="card-title text-center pb-3">Post your comment</h4>
+            {% render_comment_form for page %}
+        </div>
+    </div>
+    {% endif %}
+</main>
+{% endblock %}
